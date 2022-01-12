@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #app1{
+            height: 300px;
+            overflow: scroll;
+            background-color: #eee;
+        }
+        #container1{
+            height: 800px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="app1">
+        <div id="container1">
+            <div id="content">
+
+            </div>
+        </div>
+    </div>
+
+    <script src="inf-list-view.js"></script>
+    <script>
+        var rendercall =  function (index, item, lastnode) { 
+            if (lastnode) {
+                lastnode.children[1].innerText=item
+                if (index % 2 == 0) {
+                    lastnode.children[0].style.width="50%"
+                    lastnode.children[0].setAttribute('src','http://192.168.1.188/lbsc52/./upload/Seller/293/lzjy/61de6d0463512_s.jpg');
+                    lastnode.style.backgroundColor = "#ddd"
+                } else {
+                    lastnode.children[0].style.width="80%"
+                    lastnode.children[0].setAttribute('src','http://192.168.1.188/lbsc52/./upload/Seller/293/lzjy/61de6d8d1a51a_s.jpg');
+                    lastnode.style.backgroundColor="#eee"
+                }
+            } else {
+                var d = document.createElement("div")
+                var img = document.createElement("img")
+                d.append(img)
+                var d1 = document.createElement("div")
+                d1.innerText=item
+                d1.style.textAlign="center"
+                d.append(d1)
+                if (index % 2 == 0) {
+                    img.style.width="50%"
+                    img.setAttribute('src','http://192.168.1.188/lbsc52/./upload/Seller/293/lzjy/61de6d0463512_s.jpg');
+                    d.style.backgroundColor="#ddd"
+                } else {
+                    img.style.width="80%"
+                    img.setAttribute('src','http://192.168.1.188/lbsc52/./upload/Seller/293/lzjy/61de6d8d1a51a_s.jpg');
+                    d.style.backgroundColor="#eee"
+                }
+                return d
+            }
+        }
+
+        var listv =[]
+        for(var i=0;i<1000;i++){
+            listv=listv.concat("abcdefghijklmnopqrstuvwxyz".toUpperCase().split(''))
+        }
+
+        // window.list1 = infListView(app,container,listv,rendercall,180)
+        window.list2 = infListView(app1,container1,content,listv,rendercall,50)
+        console.log(list2)
+        
+    </script>
+</body>
+</html>
